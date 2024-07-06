@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import smtplib
+import time
 
 MY_LAT = -7.708540
 MY_LONG = 110.375510
@@ -50,5 +51,7 @@ def send_email():
         )
 
 
-if is_iss_spotted() and is_dark(MY_LAT, MY_LONG):
-    send_email()
+while True:
+    time.sleep(60)
+    if is_dark(MY_LAT, MY_LONG) and is_iss_spotted():
+        send_email()
